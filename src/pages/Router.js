@@ -7,13 +7,16 @@ import SignupForm from "./SignupForm";
 import NoMatch from "./NoMatch";
 import HomeApp from "./HomeApp";
 import MyBlogsApp from "./MyBlogsApp";
+import PublicRoutes from "./PublicRoutes";
 
 const Routing = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<LoginForm/>}></Route>
-        <Route path="/register" element={<SignupForm/>}></Route>
+      <Route element={<PublicRoutes />}>
+          <Route path="/" element={<LoginForm />} />
+          <Route path="/register" element={<SignupForm />} />
+        </Route>
 
          <Route element={<ProtectedRoutes/>}>
       

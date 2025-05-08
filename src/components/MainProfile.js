@@ -10,19 +10,18 @@ const MainProfile = () => {
   const [email,setEmail]=useState("vpsingh@gmail.com")
   const [profilepicture,setProfilePicture]=useState()
 
-  const showmyblogs=async()=>{
+  const showmyblogs=async()=>{ /*not using this function currently */
     navigate("/myblogs");
   }
 
   const handleProfileClick =async () => {
     setShowProfile(true);
     const SavedValue = JSON.parse(localStorage.getItem("userin"));
-    // console.log(SavedValue);
+
     if (SavedValue) 
    {   setUsername(SavedValue.fullname)
        setEmail(SavedValue.email);
        setProfilePicture(SavedValue.profileimageURL)
-      //  console.log("dsfe",profilepicture);
    }
     else if(SavedValue === null){
       setUsername("DummyUser")
@@ -30,15 +29,17 @@ const MainProfile = () => {
       setProfilePicture()
     }
   };
+
 useEffect(()=>{
 handleProfileClick()
 },[])
+
   const handleLogout = () => {
     setShowProfile(false);
-    localStorage.removeItem("userin")
+    localStorage.removeItem("userin");
+    localStorage.removeItem("usertoken");
     Cookies.remove('token');        
     navigate("/")
-    // console.log('Logged out');
   };
 
 
