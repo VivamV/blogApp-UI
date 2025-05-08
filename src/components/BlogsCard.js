@@ -3,7 +3,7 @@ import { AiOutlineLike } from "react-icons/ai";
 import { BiSolidLike } from "react-icons/bi";
 
 const BlogsCard = ({
-  id,
+  userId,
   postId,
   image,
   title,
@@ -16,7 +16,10 @@ const BlogsCard = ({
   onDelete,
   onEdit,
 }) => {
-  let Liked1 = likesArray.includes(id);
+  let Liked1 =
+    likesArray.includes(
+      userId
+    ); /*It checks whether UserId is present in the likesArray,meqans logged in user has liked it or not*/
   const handleLike = () => {
     onLike();
   };
@@ -31,22 +34,11 @@ const BlogsCard = ({
   const minutes = date.getMinutes();
   const seconds = date.getSeconds();
 
-  const [isHovered, setIsHovered] = useState(false);
-  // console.log("personal",postId);
-  // console.log("titlel",title);
+  const [isHovered, setIsHovered] =
+    useState(false); /* to make post big or small on hovering*/
 
   const handleDeleted = async () => {
-    // try {
-    //     // console.log("postidpehle",postId);
-    //     await axios.delete(`http://localhost:4000/v1/myblogs/${postId}`, {
-    //         headers: {
-    //           'Authorization': `Bearer ${Cookies.get('token')}`
-    //         }
-    //       });
     onDelete(postId);
-    // } catch (error) {
-    //   // console.error('Error deleting post:', error);
-    // }
   };
   return (
     <div

@@ -76,25 +76,20 @@ const SignupForm = () => {
     }),
     onSubmit: async (values) => {
       try {
+        console.log("Register: values and blogData",values,blogData)
         const response = await axios.post('http://localhost:4000/v1/register', { ...values, ...blogData });
-        // console.log(response.data);
-    console.log("response received in register",response)
-        if (response.data.user) {
-          // alert('User Registered, Please Login with your credentials');
+        console.log("response received in register",response)
+        if (response.status===201) {
          toast.success("User Registered, Please Login with your credentials")
-          // console.log("toast.success",er)
-     
-        } else if (response.data.message === 'User Already exists') {
-          // alert('User Already exists, Please Login');
-          toast.info("User Already exists, Please Login")
-          
-
-        }
+        } 
         setTimeout(()=>{navigate('/');},3000) 
       } catch (error) {
-        // console.error('There was an error registering:', error);
-        toast.error("There was a error registering")
-        // alert('There was an error registering');
+        if (error.response && error.response.status === 409) { /*when user already exists ,so no need to register*/
+          toast.info("User already exists, Please Login");
+          setTimeout(()=>{navigate('/');},3000) 
+        } else {
+          toast.error("There was an error registering");
+        }
       }
     },
   });

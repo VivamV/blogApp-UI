@@ -30,11 +30,8 @@ const LoginForm = () => {
     }),
     onSubmit: async (values) => {
       try {
+        console.log("LOGIN: values",values)
         const response = await axios.post('http://localhost:4000/v1/login', values);
-        // console.log("login",response.data);
-        // console.log("login ke time par toekn le lia",response.data.token);
-        // console.log(response.data.user);
-        // console.log("login message",response.data.message);
         if (response.data.user) {
           
           localStorage.setItem("userin", JSON.stringify(response.data.user));

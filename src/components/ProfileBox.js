@@ -2,7 +2,7 @@
 import React from 'react';
 
 const ProfileBox = ({username, email,profileimageURL, onLogout,showmyblogs}) => {
-
+/*currently ,i am not using showmyblogs ,but i can use it in case,if i want to adda link like readYourBlogs inside ProfileBox*/
 
   return (
     <div className="bg-white shadow-lg rounded-lg p-6 absolute top-16 right-8 w-80 z-50">
